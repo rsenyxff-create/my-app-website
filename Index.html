@@ -1,0 +1,524 @@
+file:///android_asset/index.html  <!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GYANBEE - Learn Play Grow</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:Arial,"Noto Sans Devanagari",sans-serif;background:linear-gradient(180deg,#fff8df,#e8f7ff);color:#263238}
+.header{width:94%;max-width:1100px;margin:18px auto;padding:25px 12px;text-align:center;border:5px solid #fff;border-radius:30px;background:linear-gradient(135deg,#ffd76a,#ff9fc7,#8ddcff);box-shadow:0 8px 25px #0002}
+.header h1{margin:0;font-size:clamp(40px,10vw,65px);color:#713f91;text-shadow:2px 3px #fff}
+.header p{margin:7px;font-weight:bold;color:#553b67}
+.main{width:94%;max-width:1100px;margin:auto}
+.folder-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}
+.folder{min-height:180px;padding:18px;border:4px solid #fff;border-radius:24px;box-shadow:0 8px 20px #0002;text-align:center;cursor:pointer;transition:.2s}
+.folder:active{transform:scale(.97)}
+.icon{font-size:52px}
+.folder h2{margin:6px;font-size:22px}
+.folder p{margin:7px}
+.open{border:0;padding:10px 18px;border-radius:13px;background:#fff;font-weight:bold;font-size:15px}
+.f1{background:linear-gradient(145deg,#ffe082,#ffb74d)}
+.f2{background:linear-gradient(145deg,#b3e5fc,#81d4fa)}
+.f3{background:linear-gradient(145deg,#c8e6c9,#81c784)}
+.f4{background:linear-gradient(145deg,#f8bbd0,#f48fb1)}
+.f5{background:linear-gradient(145deg,#d1c4e9,#9575cd)}
+.f6{background:linear-gradient(145deg,#bbdefb,#64b5f6)}
+.f7{background:linear-gradient(145deg,#fff59d,#ffd54f)}
+.f8{background:linear-gradient(145deg,#ffccbc,#ff8a65)}
+.f9{background:linear-gradient(145deg,#dcedc8,#9ccc65)}
+.f10{background:linear-gradient(145deg,#b2dfdb,#4db6ac)}
+.panel{display:none;background:#fff;margin-top:20px;padding:18px;border-radius:25px;box-shadow:0 8px 22px #0002}
+.panel.active{display:block}
+.title{text-align:center;color:#673ab7;font-size:28px;font-weight:bold;margin-bottom:18px}
+.close{display:block;margin:0 auto 20px;border:0;background:#673ab7;color:#fff;padding:11px 20px;border-radius:13px;font-weight:bold}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.card{background:#fffdf5;border:3px solid #ffd166;border-radius:17px;padding:13px 7px;text-align:center;min-height:120px}
+.big{font-size:34px;font-weight:bold;color:#e85d75}
+.pic{font-size:29px;margin:4px}
+.word{font-weight:bold}
+.desc{font-size:13px;color:#666;margin-top:4px}
+.story{background:#fff8e8;border:3px solid #ffcc80;padding:15px;border-radius:18px;margin-bottom:12px;line-height:1.55}
+.story h3{margin:0 0 7px;color:#e65100}
+.joke{background:#fffde7;border:3px solid #fdd835;padding:15px;border-radius:17px;margin-bottom:11px;line-height:1.55}
+.quizbox{border:3px solid #90caf9;background:#f8fbff;padding:16px;border-radius:20px}
+.quiztop{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-weight:bold}
+.timer{color:#d32f2f;font-size:20px}
+.question{font-size:21px;font-weight:bold;line-height:1.5;margin:20px 0}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.option{padding:14px;background:#fff;border:3px solid #90caf9;border-radius:14px;font-size:16px;font-weight:bold;cursor:pointer}
+.option.correct{background:#c8e6c9;border-color:#43a047}
+.option.wrong{background:#ffcdd2;border-color:#e53935}
+.option.disabled{pointer-events:none}
+.feedback{text-align:center;min-height:30px;margin-top:13px;font-size:17px;font-weight:bold}
+.btn{border:0;padding:11px 17px;border-radius:13px;background:#7e57c2;color:#fff;font-weight:bold;cursor:pointer}
+.voice{background:#ec407a}
+.next{display:block;margin:15px auto 0}
+.footer{text-align:center;padding:28px;font-size:27px;font-weight:bold}
+.learn{color:#ff7043}.play{color:#42a5f5}.grow{color:#66bb6a}
+@media(max-width:650px){.folder-grid{grid-template-columns:1fr}.options{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="header">
+<h1>🐝 GYANBEE</h1>
+<p>🌈 Learn • Play • Grow • Discover 🌈</p>
+<p>छोटे बच्चों के लिए मज़ेदार Learning App</p>
+</header>
+
+<main class="main">
+
+<!-- ================= FOLDERS ================= -->
+<div class="folder-grid">
+
+<div class="folder f1" onclick="openFolder('az')">
+<div class="icon">🔤</div><h2>A to Z</h2><p>English Alphabet Learning</p><button class="open">📂 Open</button>
+</div>
+
+<div class="folder f2" onclick="openFolder('azq')">
+<div class="icon">🧠</div><h2>A to Z Quiz</h2><p>20 Questions • 10 Seconds</p><button class="open">📂 Open Quiz</button>
+</div>
+
+<div class="folder f3" onclick="openFolder('hindi')">
+<div class="icon">📖</div><h2>क से ज्ञ</h2><p>पूरी हिंदी व्यंजनमाला</p><button class="open">📂 Open</button>
+</div>
+
+<div class="folder f4" onclick="openFolder('hindiq')">
+<div class="icon">🧠</div><h2>क से ज्ञ Quiz</h2><p>20 Questions • 10 Seconds</p><button class="open">📂 Open Quiz</button>
+</div>
+
+<div class="folder f5" onclick="openFolder('stories')">
+<div class="icon">📕</div><h2>Stories</h2><p>10 छोटी कहानियाँ</p><button class="open">📂 Open</button>
+</div>
+
+<div class="folder f6" onclick="openFolder('storyq')">
+<div class="icon">🧠</div><h2>Story Quiz</h2><p>20 Questions • 10 Seconds</p><button class="open">📂 Open Quiz</button>
+</div>
+
+<div class="folder f7" onclick="openFolder('jokes')">
+<div class="icon">😂</div><h2>Chutkule</h2><p>15 मज़ेदार चुटकुले</p><button class="open">📂 Open</button>
+</div>
+
+<div class="folder f8" onclick="openFolder('mathq')">
+<div class="icon">🧮</div><h2>Maths Quiz</h2><p>20 Questions • 10 Seconds</p><button class="open">📂 Open Quiz</button>
+</div>
+
+<div class="folder f9" onclick="openFolder('hindilearn')">
+<div class="icon">🇮🇳</div><h2>Hindi Learning</h2><p>हिंदी शब्द और अक्षर</p><button class="open">📂 Open</button>
+</div>
+
+<div class="folder f10" onclick="openFolder('hindiquiz')">
+<div class="icon">🧠</div><h2>Hindi Quiz</h2><p>20 Questions • 10 Seconds</p><button class="open">📂 Open Quiz</button>
+</div>
+
+</div>
+
+<!-- ================= A TO Z ================= -->
+<section id="az" class="panel">
+<div class="title">🔤 A to Z Learning</div>
+<button class="close" onclick="closeFolders()">⬅️ Back to Folders</button>
+<div class="cards" id="azCards"></div>
+</section>
+
+<!-- ================= A TO Z QUIZ ================= -->
+<section id="azq" class="panel">
+<div class="title">🧠 A to Z Quiz</div>
+<button class="close" onclick="closeFolders()">⬅️ Back to Folders</button>
+<div id="azQuizBox"></div>
+</section>
+
+<!-- ================= KA SE GYA ================= -->
+<section id="hindi" class="panel">
+<div class="title">📖 क से ज्ञ — पूरी हिंदी व्यंजनमाला</div>
+<button class="close" onclick="closeFolders()">⬅️ Back to Folders</button>
+<div class="cards" id="hindiCards"></div>
+</section>
+
+<!-- ================= KA SE GYA QUIZ ================= -->
+<section id="hindiq" class="panel">
+<div class="title">🧠 क से ज्ञ Quiz</div>
+<button class="close" onclick="closeFolders()">⬅️ Back to Folders</button>
+<div id="hindiQuizBox"></div>
+</section>
+
+<!-- ================= STORIES ================= -->
+<section id="stories" class="panel">
+<div class="title">📕 10 छोटी कहानियाँ</div>
+<button class="close" onclick="closeFolders()">⬅️ Back to Folders</button>
+
+<div class="story"><h3>1. शेर और चूहा 🦁🐭</h3><p>एक शेर जंगल में सो रहा था। छोटा चूहा उसके ऊपर दौड़ गया। शेर ने उसे छोड़ दिया। बाद में चूहे ने जाल काटकर शेर को बचाया।</p><b>सीख:</b> छोटा व्यक्ति भी बड़ी मदद कर सकता है।</div>
+
+<div class="story"><h3>2. ईमानदार लकड़हारा 🪓</h3><p>एक लकड़हारे की कुल्हाड़ी नदी में गिर गई। उसने सच बताया। उसकी ईमानदारी से खुश होकर उसे कुल्हाड़ी वापस मिली।</p><b>सीख:</b> हमेशा ईमानदार रहो।</div>
+
+<div class="story"><h3>3. प्यासा कौआ 🐦</h3><p>कौए को पानी का घड़ा मिला। पानी नीचे था। उसने घड़े में पत्थर डाले और पानी ऊपर आ गया।</p><b>सीख:</b> समझदारी से समस्या का हल मिलता है।</div>
+
+<div class="story"><h3>4. खरगोश और कछुआ 🐰🐢</h3><p>खरगोश को अपनी तेज़ दौड़ पर घमंड था। कछुआ धीरे-धीरे चलता रहा और अंत में जीत गया।</p><b>सीख:</b> लगातार मेहनत जरूरी है।</div>
+
+<div class="story"><h3>5. लालची कुत्ता 🐶</h3><p>कुत्ते के मुँह में रोटी थी। पानी में अपनी परछाईं देखकर उसने दूसरी रोटी लेने के लिए मुँह खोला और अपनी रोटी भी खो दी।</p><b>सीख:</b> लालच नुकसान कर सकता है।</div>
+
+<div class="story"><h3>6. चींटी और कबूतर 🐜🕊️</h3><p>चींटी पानी में गिर गई। कबूतर ने पत्ता डालकर उसकी मदद की। बाद में चींटी ने शिकारी को काटकर कबूतर को बचाया।</p><b>सीख:</b> भलाई का फल अच्छा होता है।</div>
+
+<div class="story"><h3>7. मेहनती किसान 👨‍🌾</h3><p>एक किसान रोज़ खेत में मेहनत करता था। उसकी मेहनत से अच्छी फसल हुई।</p><b>सीख:</b> मेहनत सफलता की कुंजी है।</div>
+
+<div class="story"><h3>8. दो बकरियाँ 🐐🐐</h3><p>दो बकरियाँ संकरे पुल पर आमने-सामने आ गईं। एक बकरी पीछे हट गई और दोनों सुरक्षित निकल गईं।</p><b>सीख:</b> समझौता करना अच्छी बात है।</div>
+
+<div class="story"><h3>9. सच्चा मित्र 🤝</h3><p>दो मित्र जंगल से जा रहे थे। मुश्किल समय में दोनों ने एक-दूसरे की मदद की।</p><b>सीख:</b> सच्चा मित्र मुश्किल समय में साथ देता है।</div>
+
+<div class="story"><h3>10. पेड़ का महत्व 🌳</h3><p>एक बच्चा पेड़ की छाया में खेलता था। उसने पेड़ों का महत्व समझकर एक पौधा लगाया।</p><b>सीख:</b> पेड़ों की रक्षा करो।</div>
+</section>
+
+<!-- ================= STORY QUIZ ================= -->
+<section id="storyq" class="panel">
+<div class="title">🧠 Story Quiz</div>
+<button class="close" onclick="closeFolders()">⬅️ Back to Folders</button>
+<div id="storyQuizBox"></div>
+</section>
+
+<!-- ================= JOKES ================= -->
+<section id="jokes" class="panel">
+<div class="title">😂 15 मज़ेदार चुटकुले</div>
+<button class="close" onclick="closeFolders()">⬅️ Back to Folders</button>
+
+<div class="joke">1️⃣ टीचर: सूरज कहाँ से निकलता है?<br>बच्चा: जहाँ से मम्मी मुझे सुबह उठाती हैं! 😂</div>
+<div class="joke">2️⃣ टीचर: होमवर्क कहाँ है?<br>बच्चा: मैडम, घर पर बहुत सुरक्षित रखा है! 😄</div>
+<div class="joke">3️⃣ पापा: पढ़ाई कैसी चल रही है?<br>बच्चा: चल नहीं रही, बैठी हुई है! 😂</div>
+<div class="joke">4️⃣ टीचर: पानी का रंग क्या है?<br>बच्चा: गिलास के हिसाब से बदल जाता है! 😆</div>
+<div class="joke">5️⃣ मम्मी: इतना हँस क्यों रहे हो?<br>बच्चा: मेरा स्कूल बैग मुझे देखकर मुस्कुरा रहा है! 😂</div>
+<div class="joke">6️⃣ टीचर: सबसे तेज़ क्या चलता है?<br>बच्चा: छुट्टी की घंटी सुनते ही बच्चे! 😄</div>
+<div class="joke">7️⃣ दोस्त: स्कूल क्यों नहीं गए?<br>बच्चा: स्कूल गया था, छुट्टी मिल गई! 😂</div>
+<div class="joke">8️⃣ टीचर: दो और दो कितने?<br>बच्चा: मैडम, सवाल आसान है, जवाब सोचने दो! 😆</div>
+<div class="joke">9️⃣ पापा: दूध क्यों नहीं पिया?<br>बच्चा: दूध ने मुझे बुलाया ही नहीं! 😂</div>
+<div class="joke">🔟 टीचर: किताब क्यों नहीं पढ़ी?<br>बच्चा: मैडम, किताब सो रही थी! 😄</div>
+<div class="joke">1️⃣1️⃣ बच्चा: मम्मी आज स्कूल में स्टार मिला! मम्मी: क्यों? बच्चा: टीचर ने कहा, तुम स्टार हो... लेकिन बात मत करो! 😂</div>
+<div class="joke">1️⃣2️⃣ दोस्त: तुम्हारा पेन कहाँ है?<br>बच्चा: लिखने वाली जगह पर! 😆</div>
+<div class="joke">1️⃣3️⃣ टीचर: देर से क्यों आए?<br>बच्चा: मैडम, रास्ते में स्कूल आ गया था! 😂</div>
+<div class="joke">1️⃣4️⃣ मम्मी: खिलौने समेटे?<br>बच्चा: हाँ, अब वो भी आराम कर रहे हैं! 😄</div>
+<div class="joke">1️⃣5️⃣ टीचर: पढ़ाई क्यों जरूरी है?<br>बच्चा: ताकि बड़े होकर होमवर्क न करना पड़े! 😂</div>
+</section>
+
+<!-- ================= MATH QUIZ ONLY ================= -->
+<section id="mathq" class="panel">
+<div class="title">🧮 Maths Quiz</div>
+<button class="close" onclick="closeFolders()">⬅️ Back to Folders</button>
+<div id="mathQuizBox"></div>
+</section>
+
+<!-- ================= HINDI LEARNING ================= -->
+<section id="hindilearn" class="panel">
+<div class="title">🇮🇳 Hindi Learning</div>
+<button class="close" onclick="closeFolders()">⬅️ Back to Folders</button>
+<div class="cards" id="hindiLearnCards"></div>
+</section>
+
+<!-- ================= HINDI QUIZ ================= -->
+<section id="hindiquiz" class="panel">
+<div class="title">🧠 Hindi Quiz</div>
+<button class="close" onclick="closeFolders()">⬅️ Back to Folders</button>
+<div id="hindiQuiz2Box"></div>
+</section>
+
+</main>
+
+<footer class="footer">
+<span class="learn">Learn</span> • <span class="play">Play</span> • <span class="grow">Grow</span>
+</footer>
+
+<script>
+/* ================= FOLDER SYSTEM ================= */
+function openFolder(id){
+document.querySelectorAll(".panel").forEach(p=>{
+p.classList.remove("active");
+p.style.display="none";
+});
+const panel=document.getElementById(id);
+if(!panel){alert("Folder content नहीं मिला!");return}
+panel.classList.add("active");
+panel.style.display="block";
+setTimeout(()=>panel.scrollIntoView({behavior:"smooth",block:"start"}),80);
+}
+
+function closeFolders(){
+document.querySelectorAll(".panel").forEach(p=>{
+p.classList.remove("active");
+p.style.display="none";
+});
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ================= A-Z CONTENT ================= */
+const AZ=[
+["A","🍎","Apple"],["B","⚽","Ball"],["C","🐱","Cat"],["D","🐶","Dog"],
+["E","🐘","Elephant"],["F","🐟","Fish"],["G","🍇","Grapes"],["H","🏠","House"],
+["I","🍦","Ice Cream"],["J","🧃","Juice"],["K","🪁","Kite"],["L","🦁","Lion"],
+["M","🐒","Monkey"],["N","👃","Nose"],["O","🍊","Orange"],["P","🐼","Panda"],
+["Q","👑","Queen"],["R","🌈","Rainbow"],["S","☀️","Sun"],["T","🐯","Tiger"],
+["U","☂️","Umbrella"],["V","🚐","Van"],["W","🍉","Watermelon"],
+["X","🎵","Xylophone"],["Y","🪀","Yo-Yo"],["Z","🦓","Zebra"]
+];
+
+document.getElementById("azCards").innerHTML=AZ.map(x=>`
+<div class="card"><div class="big">${x[0]}</div><div class="pic">${x[1]}</div><div class="word">${x[2]}</div><div class="desc">${x[0]} for ${x[2]}</div></div>
+`).join("");
+
+/* ================= COMPLETE 36 VYANJAN ================= */
+const HINDI=[
+["क","🌸","कमल"],["ख","🐰","खरगोश"],["ग","🐄","गाय"],["घ","🏠","घर"],
+["ङ","🔤","ङ अक्षर"],["च","🐭","चूहा"],["छ","☂️","छाता"],["ज","🚢","जहाज"],
+["झ","🎠","झूला"],["ञ","🔤","ञ अक्षर"],["ट","🍅","टमाटर"],["ठ","🛒","ठेला"],
+["ड","🥁","डमरू"],["ढ","🧢","ढक्कन"],["ण","🔤","ण अक्षर"],["त","🍉","तरबूज"],
+["थ","👜","थैला"],["द","🦷","दाँत"],["ध","🌾","धान"],["न","👃","नाक"],
+["प","🪁","पतंग"],["फ","🌸","फूल"],["ब","🐐","बकरी"],["भ","🐻","भालू"],
+["म","🐟","मछली"],["य","✈️","यात्रा"],["र","🍬","रसगुल्ला"],["ल","🍬","लड्डू"],
+["व","🚗","वाहन"],["श","🐚","शंख"],["ष","🔤","ष अक्षर"],["स","☀️","सूरज"],
+["ह","🐘","हाथी"],["क्ष","📚","क्षमा"],["त्र","🔱","त्रिशूल"],["ज्ञ","🧠","ज्ञान"]
+];
+
+document.getElementById("hindiCards").innerHTML=HINDI.map(x=>`
+<div class="card"><div class="big">${x[0]}</div><div class="pic">${x[1]}</div><div class="word">${x[2]}</div><div class="desc">${x[0]} से ${x[2]}</div></div>
+`).join("");
+
+/* ================= HINDI LEARNING ================= */
+const HL=[
+["अ","🍎","अनार"],["आ","🥭","आम"],["इ","🌿","इमली"],["ई","🌾","ईख"],
+["उ","🦉","उल्लू"],["ऊ","🐪","ऊँट"],["ए","👠","एड़ी"],["ऐ","👓","ऐनक"],
+["ओ","🥣","ओखली"],["औ","🌿","औषधि"],...HINDI
+];
+
+document.getElementById("hindiLearnCards").innerHTML=HL.map(x=>`
+<div class="card"><div class="big">${x[0]}</div><div class="pic">${x[1]}</div><div class="word">${x[2]}</div><div class="desc">${x[0]} से ${x[2]}</div></div>
+`).join("");
+
+/* ================= QUIZ ENGINE ================= */
+function createQuiz(id,data,lang){
+const box=document.getElementById(id);
+box.innerHTML=`
+<div class="quizbox">
+<div class="quiztop">
+<span id="${id}P">Question 1 / ${data.length}</span>
+<span>Score: <span id="${id}S">0</span></span>
+<span class="timer">⏱️ <span id="${id}T">10</span>s</span>
+</div>
+<div class="question" id="${id}Q">Quiz शुरू करने के लिए Start दबाएँ।</div>
+<button class="btn" id="${id}Start">▶️ Start Quiz</button>
+<button class="btn voice" id="${id}Voice">👩‍🏫 Ma'am बोले</button>
+<div class="options" id="${id}O"></div>
+<div class="feedback" id="${id}F"></div>
+<button class="btn next" id="${id}N" style="display:none">Next Question ➡️</button>
+</div>`;
+
+let i=0,score=0,time=10,interval=null,started=false,answered=false;
+const P=document.getElementById(id+"P"),S=document.getElementById(id+"S");
+const T=document.getElementById(id+"T"),Q=document.getElementById(id+"Q");
+const O=document.getElementById(id+"O"),F=document.getElementById(id+"F");
+const N=document.getElementById(id+"N"),Start=document.getElementById(id+"Start");
+const Voice=document.getElementById(id+"Voice");
+
+function speak(){
+if(!started||!("speechSynthesis"in window))return;
+speechSynthesis.cancel();
+let u=new SpeechSynthesisUtterance(data[i].q);
+u.lang=lang==="hi"?"hi-IN":"en-IN";
+u.rate=.82;u.pitch=1.12;speechSynthesis.speak(u);
+}
+
+function load(){
+clearInterval(interval);answered=false;time=10;T.textContent=10;
+P.textContent=`Question ${i+1} / ${data.length}`;
+Q.textContent=data[i].q;F.textContent="";N.style.display="none";O.innerHTML="";
+data[i].options.forEach(opt=>{
+let b=document.createElement("button");
+b.className="option";b.textContent=opt;
+b.onclick=()=>answer(opt,b);O.appendChild(b);
+});
+setTimeout(speak,250);
+interval=setInterval(()=>{
+time--;T.textContent=time;
+if(time<=0){clearInterval(interval);if(!answered)timeUp()}
+},1000);
+}
+
+function answer(sel,b){
+if(answered)return;
+answered=true;clearInterval(interval);
+let correct=data[i].answer;
+O.querySelectorAll(".option").forEach(x=>{
+x.classList.add("disabled");
+if(x.textContent===correct)x.classList.add("correct");
+});
+if(sel===correct){
+score++;S.textContent=score;
+F.textContent="🎉 बहुत बढ़िया! सही जवाब! ⭐";
+}else{
+b.classList.add("wrong");
+F.textContent="😊 सही जवाब है: "+correct;
+}
+N.style.display="block";
+N.textContent=i===data.length-1?"🏆 Result देखें":"Next Question ➡️";
+}
+
+function timeUp(){
+answered=true;
+let correct=data[i].answer;
+O.querySelectorAll(".option").forEach(x=>{
+x.classList.add("disabled");
+if(x.textContent===correct)x.classList.add("correct");
+});
+F.textContent="⏰ Time Up! सही जवाब है: "+correct;
+N.style.display="block";
+N.textContent=i===data.length-1?"🏆 Result देखें":"Next Question ➡️";
+}
+
+Start.onclick=()=>{
+i=0;score=0;S.textContent=0;started=true;
+Start.style.display="none";load();
+};
+
+Voice.onclick=speak;
+
+N.onclick=()=>{
+if(i===data.length-1){
+clearInterval(interval);
+if("speechSynthesis"in window)speechSynthesis.cancel();
+Q.textContent=`🎊 Quiz Complete! आपका Score: ${score} / ${data.length}`;
+O.innerHTML="";
+F.textContent=score===data.length?"🌟 Perfect! शानदार!":"👏 Great Job! फिर से Practice करो!";
+N.style.display="none";Start.style.display="inline-block";
+Start.textContent="🔄 Play Again";
+}else{i++;load()}
+};
+}
+
+/* ================= QUIZ DATA ================= */
+const azQuiz=[
+["A for ____?",["Apple","Ball","Cat","Dog"],"Apple"],
+["B for ____?",["Ball","Fish","Lion","Sun"],"Ball"],
+["C for ____?",["Cat","Dog","Tiger","Van"],"Cat"],
+["D for ____?",["Dog","Apple","Zebra","Queen"],"Dog"],
+["E for ____?",["Elephant","Orange","Panda","Kite"],"Elephant"],
+["F for ____?",["Fish","House","Monkey","Rainbow"],"Fish"],
+["G for ____?",["Grapes","Lion","Sun","Umbrella"],"Grapes"],
+["H for ____?",["House","Van","Apple","Tiger"],"House"],
+["I for ____?",["Ice Cream","Juice","Kite","Lion"],"Ice Cream"],
+["J for ____?",["Juice","Panda","Queen","Zebra"],"Juice"],
+["K for ____?",["Kite","Rainbow","Fish","House"],"Kite"],
+["L for ____?",["Lion","Monkey","Orange","Van"],"Lion"],
+["M for ____?",["Monkey","Panda","Sun","Apple"],"Monkey"],
+["N for ____?",["Nose","Queen","Tiger","Fish"],"Nose"],
+["O for ____?",["Orange","Zebra","Kite","Lion"],"Orange"],
+["P for ____?",["Panda","House","Grapes","Umbrella"],"Panda"],
+["Q for ____?",["Queen","Rainbow","Tiger","Apple"],"Queen"],
+["R for ____?",["Rainbow","Van","Dog","Fish"],"Rainbow"],
+["S for ____?",["Sun","Watermelon","Monkey","Elephant"],"Sun"],
+["Z for ____?",["Zebra","Apple","Ball","Cat"],"Zebra"]
+];
+
+const hindiQuiz=[
+["क से कौन-सा शब्द है?",["कमल","गाय","घर","मछली"],"कमल"],
+["ख से कौन-सा शब्द है?",["खरगोश","कमल","फूल","नाक"],"खरगोश"],
+["ग से कौन-सा शब्द है?",["गाय","घर","पतंग","मछली"],"गाय"],
+["घ से कौन-सा शब्द है?",["घर","गाय","फूल","बकरी"],"घर"],
+["च से कौन-सा शब्द है?",["चूहा","कमल","सूरज","हाथी"],"चूहा"],
+["छ से कौन-सा शब्द है?",["छाता","गाय","मछली","घर"],"छाता"],
+["ज से कौन-सा शब्द है?",["जहाज","फूल","कमल","नाक"],"जहाज"],
+["झ से कौन-सा शब्द है?",["झूला","गाय","मछली","घर"],"झूला"],
+["ट से कौन-सा शब्द है?",["टमाटर","कमल","फूल","बकरी"],"टमाटर"],
+["ठ से कौन-सा शब्द है?",["ठेला","गाय","नाक","कमल"],"ठेला"],
+["ड से कौन-सा शब्द है?",["डमरू","घर","फूल","मछली"],"डमरू"],
+["ढ से कौन-सा शब्द है?",["ढक्कन","गाय","कमल","सूरज"],"ढक्कन"],
+["त से कौन-सा शब्द है?",["तरबूज","मछली","घर","फूल"],"तरबूज"],
+["थ से कौन-सा शब्द है?",["थैला","गाय","कमल","नाक"],"थैला"],
+["द से कौन-सा शब्द है?",["दाँत","फूल","मछली","घर"],"दाँत"],
+["ध से कौन-सा शब्द है?",["धान","गाय","कमल","चूहा"],"धान"],
+["न से कौन-सा शब्द है?",["नाक","फूल","गाय","घर"],"नाक"],
+["प से कौन-सा शब्द है?",["पतंग","मछली","कमल","सूरज"],"पतंग"],
+["म से कौन-सा शब्द है?",["मछली","गाय","घर","फूल"],"मछली"],
+["ज्ञ से कौन-सा शब्द है?",["ज्ञान","कमल","बकरी","सूरज"],"ज्ञान"]
+];
+
+const storyQuiz=[
+["शेर को किसने जाल से बचाया?",["चूहे ने","कौए ने","कबूतर ने","कछुए ने"],"चूहे ने"],
+["लकड़हारे की कुल्हाड़ी कहाँ गिरी?",["नदी में","घर में","पेड़ पर","खेत में"],"नदी में"],
+["प्यासे कौए को क्या मिला?",["घड़ा","पेड़","फल","नदी"],"घड़ा"],
+["खरगोश किस बात पर घमंड करता था?",["तेज़ दौड़ पर","खाने पर","तैरने पर","सोने पर"],"तेज़ दौड़ पर"],
+["कहानी में कौन जीता?",["कछुआ","खरगोश","शेर","चूहा"],"कछुआ"],
+["लालची कुत्ते के मुँह में क्या था?",["रोटी","सेब","गेंद","दूध"],"रोटी"],
+["चींटी की मदद किसने की?",["कबूतर ने","शेर ने","कुत्ते ने","कौए ने"],"कबूतर ने"],
+["किसान खेत में क्या करता था?",["मेहनत","खेल","नाच","सोना"],"मेहनत"],
+["दो बकरियाँ कहाँ मिलीं?",["संकरे पुल पर","स्कूल में","बगीचे में","घर में"],"संकरे पुल पर"],
+["पेड़ हमें क्या देता है?",["छाया","किताब","जूते","खिलौने"],"छाया"],
+["शेर जंगल में क्या कर रहा था?",["सो रहा था","तैर रहा था","पढ़ रहा था","दौड़ रहा था"],"सो रहा था"],
+["चूहे ने शेर को कैसे बचाया?",["जाल काटकर","पानी देकर","दौड़कर","पेड़ चढ़कर"],"जाल काटकर"],
+["कौए ने घड़े में क्या डाला?",["पत्थर","पत्ते","फल","रेत"],"पत्थर"],
+["कछुआ कैसे चलता था?",["धीरे-धीरे","बहुत तेज़","उड़कर","कूदकर"],"धीरे-धीरे"],
+["कुत्ते ने पानी में क्या देखा?",["अपनी परछाईं","शेर","कौआ","मछली"],"अपनी परछाईं"],
+["कबूतर को किसने बचाया?",["चींटी ने","शेर ने","कछुए ने","कुत्ते ने"],"चींटी ने"],
+["किसान की मेहनत से क्या हुआ?",["अच्छी फसल हुई","बारिश बंद हुई","पेड़ गिरा","घर टूटा"],"अच्छी फसल हुई"],
+["बकरियों ने समस्या कैसे हल की?",["एक पीछे हट गई","दोनों भाग गईं","दोनों सो गईं","पुल तोड़ दिया"],"एक पीछे हट गई"],
+["सच्चा मित्र कब मदद करता है?",["मुश्किल समय में","केवल खेल में","केवल सुबह","कभी नहीं"],"मुश्किल समय में"],
+["बच्चे ने पेड़ की कहानी में क्या लगाया?",["पौधा","खिलौना","किताब","पत्थर"],"पौधा"]
+];
+
+const mathQuiz=[
+["2 + 3 = ?",["5","4","6","7"],"5"],
+["5 + 4 = ?",["9","8","10","7"],"9"],
+["7 - 3 = ?",["4","3","5","6"],"4"],
+["9 - 5 = ?",["4","3","5","6"],"4"],
+["3 + 6 = ?",["9","8","10","7"],"9"],
+["10 - 4 = ?",["6","5","7","4"],"6"],
+["2 × 3 = ?",["6","5","7","8"],"6"],
+["4 × 2 = ?",["8","6","7","9"],"8"],
+["12 ÷ 3 = ?",["4","3","5","6"],"4"],
+["10 ÷ 2 = ?",["5","4","6","8"],"5"],
+["8 + 7 = ?",["15","14","16","13"],"15"],
+["15 - 6 = ?",["9","8","10","7"],"9"],
+["5 × 2 = ?",["10","8","12","7"],"10"],
+["18 ÷ 3 = ?",["6","5","7","9"],"6"],
+["9 + 9 = ?",["18","17","19","16"],"18"],
+["20 - 8 = ?",["12","11","13","10"],"12"],
+["3 × 4 = ?",["12","10","14","11"],"12"],
+["16 ÷ 4 = ?",["4","3","5","6"],"4"],
+["11 + 5 = ?",["16","15","17","14"],"16"],
+["25 - 10 = ?",["15","14","16","13"],"15"]
+];
+
+const hindiQuiz2=[
+["अनार किस अक्षर से शुरू होता है?",["अ","आ","इ","उ"],"अ"],
+["आम किस अक्षर से शुरू होता है?",["आ","अ","उ","ए"],"आ"],
+["इमली किस अक्षर से शुरू होती है?",["इ","ई","उ","ओ"],"इ"],
+["ऊँट किस अक्षर से शुरू होता है?",["ऊ","उ","आ","ए"],"ऊ"],
+["उल्लू किस अक्षर से शुरू होता है?",["उ","ऊ","अ","ओ"],"उ"],
+["एड़ी किस अक्षर से शुरू होती है?",["ए","ऐ","इ","ओ"],"ए"],
+["ऐनक किस अक्षर से शुरू होती है?",["ऐ","ए","आ","औ"],"ऐ"],
+["ओखली किस अक्षर से शुरू होती है?",["ओ","औ","उ","अ"],"ओ"],
+["औषधि किस अक्षर से शुरू होती है?",["औ","ओ","आ","ए"],"औ"],
+["कमल किस अक्षर से शुरू होता है?",["क","ख","ग","घ"],"क"],
+["खरगोश किस अक्षर से शुरू होता है?",["ख","क","ग","च"],"ख"],
+["गाय किस अक्षर से शुरू होती है?",["ग","घ","क","च"],"ग"],
+["घर किस अक्षर से शुरू होता है?",["घ","ग","ख","च"],"घ"],
+["चूहा किस अक्षर से शुरू होता है?",["च","छ","ज","झ"],"च"],
+["छाता किस अक्षर से शुरू होता है?",["छ","च","ज","ट"],"छ"],
+["जहाज किस अक्षर से शुरू होता है?",["ज","झ","च","ट"],"ज"],
+["टमाटर किस अक्षर से शुरू होता है?",["ट","ठ","ड","त"],"ट"],
+["पतंग किस अक्षर से शुरू होती है?",["प","फ","ब","म"],"प"],
+["मछली किस अक्षर से शुरू होती है?",["म","न","प","ब"],"म"],
+["सूरज किस अक्षर से शुरू होता है?",["स","श","ह","र"],"स"]
+];
+
+/* ================= START ALL QUIZZES ================= */
+function make(arr){return arr.map(x=>({q:x[0],options:x[1],answer:x[2]}))}
+createQuiz("azQuizBox",make(azQuiz),"en");
+createQuiz("hindiQuizBox",make(hindiQuiz),"hi");
+createQuiz("storyQuizBox",make(storyQuiz),"hi");
+createQuiz("mathQuizBox",make(mathQuiz),"en");
+createQuiz("hindiQuiz2Box",make(hindiQuiz2),"hi");
+
+/* सभी panels शुरुआत में बंद */
+document.querySelectorAll(".panel").forEach(p=>{
+p.style.display="none";
+p.classList.remove("active");
+});
+</script>
+
+</body>
+</html>
